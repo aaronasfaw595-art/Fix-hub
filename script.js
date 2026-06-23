@@ -136,13 +136,17 @@ async function apiFetch(path, options = {}) {
     }
   }
 
+  // 🔥 FIX: Check if the payload is a file upload to extend timeout threshold
+  const isFormData = options.body instanceof FormData;
+  const timeoutDuration = isFormData ? 30000 : 8000; // 30 seconds for image files, 8 for text data
+
   const response = await fetchWithTimeout(
     requestUrl,
     {
       ...options,
       headers,
     },
-    8000,
+    timeoutDuration // 👈 Dynamic threshold assigned here
   );
 
   if (method === "GET" && response.ok && !options.skipCache) {
