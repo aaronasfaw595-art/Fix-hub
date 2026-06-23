@@ -1,0 +1,1004 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>FixHub - Ethiopia Services & Ecommerce</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand" href="#">FixHub</a>
+
+        <button
+          class="navbar-toggler"
+          data-bs-toggle="collapse"
+          data-bs-target="#nav"
+          aria-label="Toggle navigation menu"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <button
+          onclick="openNotifications()"
+          class="btn btn-warning"
+          aria-label="Open notifications"
+        >
+          🔔 Notifications <span id="notif-count">0</span>
+        </button>
+        <div class="collapse navbar-collapse" id="nav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#" onclick="goHome()">Home</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="#" onclick="openCatalog()">Catalog</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="#" onclick="openAbout(event)">About</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="#" onclick="openAccount()">Account</a>
+            </li>
+            <li class="nav-item" id="cart-nav">
+              <a class="nav-link" href="#" onclick="openCart()">
+                Cart (<span id="cart-count">0</span>)
+              </a>
+            </li>
+            <span id="user-info" class="text-white ms-3"></span>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid p-0"></div>
+    <div class="container my-4">
+      <div class="input-group shadow-sm">
+        <span class="input-group-text">🔍</span>
+        <label for="search-input" class="visually-hidden"
+          >Search products and services</label
+        >
+        <input
+          type="text"
+          id="search-input"
+          class="form-control"
+          placeholder="Search products or services..."
+          aria-label="Search products and services"
+          onkeyup="handleSearch()"
+        />
+      </div>
+    </div>
+
+    <main id="main-content">
+      <section class="hero text-center py-5 bg-light">
+        <div class="container">
+          <span class="hero-badge"
+            >�️ Secure checkout • ⭐ Verified reviews • 🚚 Fast delivery</span
+          >
+          <h1>FixHub</h1>
+          <p>
+            Discover quality products, book reliable repair professionals, and
+            enjoy fast delivery support from one polished Ethiopian marketplace.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-dark" href="guest.html">Browse as Guest</a>
+            <a class="btn btn-outline-light auth-action" href="login.html"
+              >Login / Sign Up</a
+            >
+          </div>
+          <div class="hero-metrics">
+            <div class="metric-box">
+              <strong>1,200+</strong>
+              <span>Verified local providers</span>
+            </div>
+            <div class="metric-box">
+              <strong>24/7</strong>
+              <span>Support and booking updates</span>
+            </div>
+            <div class="metric-box">
+              <strong>4.9/5</strong>
+              <span>Average customer satisfaction</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="delivery-section" class="container my-5">
+        <div class="row g-4">
+          <article class="col-md-6">
+            <div class="card h-100 shadow-sm p-4">
+              <h2 class="h4 mb-2">Delivery & Support</h2>
+              <p class="text-muted mb-0">
+                FixHub highlights fast delivery options, local pickup support,
+                and quick service coordination so customers can shop and book
+                with confidence.
+              </p>
+            </div>
+          </article>
+          <article class="col-md-6">
+            <div class="card h-100 shadow-sm p-4">
+              <h2 class="h4 mb-2">Why delivery matters</h2>
+              <p class="text-muted mb-0">
+                Clear delivery information helps buyers trust the process, plan
+                their orders, and enjoy a smoother shopping experience from
+                browsing to delivery.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="trust-signals container my-5">
+        <div class="row g-4 text-center">
+          <div class="col-md-4">
+            <article
+              class="trust-card card h-100 p-4 shadow-sm"
+              role="button"
+              tabindex="0"
+              onclick="openTrustInfo('reviews')"
+              onkeydown="
+                if (event.key === 'Enter' || event.key === ' ') {
+                  event.preventDefault();
+                  openTrustInfo('reviews');
+                }
+              "
+            >
+              <div class="trust-icon">⭐</div>
+              <h3>Trusted Reviews</h3>
+              <p>
+                Real customer feedback, verified service ratings, and local
+                provider reviews to help you choose confidently.
+              </p>
+              <div class="trust-pills">
+                <span>4.9/5 average</span>
+                <span>1,200+ happy users</span>
+              </div>
+              <button
+                class="btn btn-dark btn-sm mt-3"
+                type="button"
+                onclick="
+                  event.stopPropagation();
+                  openTrustInfo('reviews');
+                "
+              >
+                View details
+              </button>
+            </article>
+          </div>
+
+          <div class="col-md-4">
+            <article
+              class="trust-card card h-100 p-4 shadow-sm"
+              role="button"
+              tabindex="0"
+              onclick="openTrustInfo('payments')"
+              onkeydown="
+                if (event.key === 'Enter' || event.key === ' ') {
+                  event.preventDefault();
+                  openTrustInfo('payments');
+                }
+              "
+            >
+              <div class="trust-icon">🔒</div>
+              <h3>Secure Payments</h3>
+              <p>
+                Encrypted checkout, trusted payment processing, and secure
+                account handling keep your transactions protected.
+              </p>
+              <div class="trust-pills">
+                <span>SSL protected</span>
+                <span>Safe checkout</span>
+              </div>
+              <button
+                class="btn btn-dark btn-sm mt-3"
+                type="button"
+                onclick="
+                  event.stopPropagation();
+                  openTrustInfo('payments');
+                "
+              >
+                View details
+              </button>
+            </article>
+          </div>
+
+          <div class="col-md-4">
+            <article
+              class="trust-card card h-100 p-4 shadow-sm"
+              role="button"
+              tabindex="0"
+              onclick="openTrustInfo('refund')"
+              onkeydown="
+                if (event.key === 'Enter' || event.key === ' ') {
+                  event.preventDefault();
+                  openTrustInfo('refund');
+                }
+              "
+            >
+              <div class="trust-icon">↩️</div>
+              <h3>Clear Refund Policy</h3>
+              <p>
+                Simple refund guidance for service issues, canceled bookings,
+                and order disputes with fast support response.
+              </p>
+              <div class="trust-pills">
+                <span>7-day review window</span>
+                <span>Support available</span>
+              </div>
+              <button
+                class="btn btn-dark btn-sm mt-3"
+                type="button"
+                onclick="
+                  event.stopPropagation();
+                  openTrustInfo('refund');
+                "
+              >
+                View details
+              </button>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="modal fade" id="trustModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="trustModalTitle">
+              FixHub Trust Details
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body" id="trustModalBody"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-dark" data-bs-dismiss="modal">
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="home-view">
+      <div class="container my-4">
+        <div class="row g-4 align-items-stretch" id="catalog-row">
+          <!-- SIDEBAR -->
+          <div class="col-md-3" id="category-sidebar">
+            <div class="card p-3 shadow-sm h-100">
+              <h5>Categories</h5>
+
+              <button
+                class="btn btn-outline-dark w-100 mb-2"
+                onclick="filterCategory('all')"
+              >
+                All
+              </button>
+              <button
+                class="btn btn-outline-dark w-100 mb-2"
+                onclick="filterCategory('fridge')"
+              >
+                Refrigerator
+              </button>
+              <button
+                class="btn btn-outline-dark w-100 mb-2"
+                onclick="filterCategory('sofa')"
+              >
+                Sofa
+              </button>
+              <button
+                class="btn btn-outline-dark w-100 mb-2"
+                onclick="filterCategory('phone')"
+              >
+                Phone
+              </button>
+              <button
+                class="btn btn-outline-dark w-100 mb-2"
+                onclick="filterCategory('laptop')"
+              >
+                Laptop
+              </button>
+              <button
+                class="btn btn-outline-dark w-100 mb-2"
+                onclick="filterCategory('tv')"
+              >
+                TV
+              </button>
+              <button
+                class="btn btn-outline-dark w-100 mb-2"
+                onclick="filterCategory('car')"
+              >
+                Car
+              </button>
+              <button
+                class="btn btn-outline-dark w-100 mb-2"
+                onclick="filterCategory('curtains')"
+              >
+                Curtains
+              </button>
+              <button
+                class="btn btn-outline-dark w-100 mb-2"
+                onclick="filterCategory('furniture')"
+              >
+                Furniture
+              </button>
+
+              <hr />
+
+              <button
+                class="btn btn-outline-primary w-100 mb-2"
+                onclick="filterCategory('plumber')"
+              >
+                Plumber
+              </button>
+              <button
+                class="btn btn-outline-primary w-100 mb-2"
+                onclick="filterCategory('electrician')"
+              >
+                Electrician
+              </button>
+              <button
+                class="btn btn-outline-primary w-100 mb-2"
+                onclick="filterCategory('mechanic')"
+              >
+                Mechanic
+              </button>
+            </div>
+          </div>
+
+          <div id="right-content" class="col-md-9 d-flex flex-column h-100">
+            <div id="ad-section" class="h-100">
+              <div
+                class="ad-banner mb-3 d-flex flex-column justify-content-center align-items-center text-white h-100"
+              >
+                <div class="mock-video mb-2">🎥 Video Ad Playing...</div>
+
+                <h2 class="fw-bold">🔥 5% OFF</h2>
+                <p class="m-0">Limited Time Offer</p>
+              </div>
+            </div>
+
+            <div class="">
+              <h3 class="mb-3">🛒 Products</h3>
+              <div class="row" id="products-container"></div>
+            </div>
+
+            <div class="">
+              <h3 class="mt-4 mb-3">🛠 Services</h3>
+              <div class="row" id="services-container"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="catalog-view" style="display: none" class="container my-4">
+      <h2>🛒 Catalog</h2>
+
+      <div id="catalog-products-section">
+        <h4>Products</h4>
+        <div class="row" id="catalog-products-container"></div>
+      </div>
+
+      <div id="catalog-services-section" class="mt-4">
+        <h4>Services</h4>
+        <div class="row" id="catalog-services-container"></div>
+      </div>
+    </div>
+
+    <footer class="text-center bg-dark text-white p-3">
+      <p>© 2026 FixHub - Built for Ethiopia</p>
+    </footer>
+
+    <div class="modal fade" id="chatModal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">💬 Chat</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div
+            class="modal-body"
+            style="
+              max-height: 400px;
+              overflow-y: auto;
+              -webkit-overflow-scrolling: touch;
+            "
+          >
+            <div id="chat-box" class="mb-3"></div>
+          </div>
+          <div
+            class="modal-footer"
+            style="flex-direction: column; gap: 10px; align-items: stretch"
+          >
+            <div
+              id="chat-preview"
+              class="text-muted small"
+              style="min-height: 1.2rem; display: none; text-align: left"
+            ></div>
+            <div class="input-group" style="width: 100%">
+              <textarea
+                id="chat-input"
+                class="form-control"
+                rows="2"
+                placeholder="Type a message..."
+                style="
+                  min-height: 56px;
+                  max-height: 140px;
+                  resize: none;
+                  width: 100%;
+                "
+              ></textarea>
+              <button
+                class="btn btn-primary"
+                onclick="sendMessage()"
+                style="min-height: 56px"
+              >
+                Send
+              </button>
+            </div>
+            <button
+              id="book-now-btn"
+              class="btn btn-warning w-100"
+              style="display: none; min-height: 48px; font-size: 1rem"
+              onclick="bookTechnicianNow()"
+            >
+              📅 Book Now
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+      import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+      const firebaseConfig = {
+        apiKey: "YOUR_KEY",
+        authDomain: "fixhub-96b15.firebaseapp.com",
+        projectId: "fixhub-96b15",
+        storageBucket: "fixhub-96b15.appspot.com",
+        messagingSenderId: "394203725744",
+        appId: "1:394203725744:web:861bb500325127d041a075",
+      };
+
+      const app = initializeApp(firebaseConfig);
+      window.db = getFirestore(app); // 🔥 GLOBAL ACCESS FOR script.js
+    </script>
+
+    <script src="script.js?v=fixhub-20260620c"></script>
+
+    <div id="toast" class="toast-message"></div>
+    <!-- CART MODAL - Mobile Optimized -->
+    <div class="modal fade" id="cartModal">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">🛒 Your Cart</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+
+          <div
+            class="modal-body"
+            id="cart-items"
+            style="
+              max-height: 60vh;
+              overflow-y: auto;
+              -webkit-overflow-scrolling: touch;
+            "
+          ></div>
+
+          <div
+            class="modal-footer"
+            style="flex-direction: column; gap: 10px; padding: 16px"
+          >
+            <button
+              class="btn btn-success w-100"
+              style="min-height: 48px; font-size: 1rem"
+              onclick="checkout()"
+            >
+              Proceed to Checkout
+            </button>
+
+            <button
+              id="cart-bnpl-btn"
+              class="btn btn-outline-warning w-100"
+              style="display: none; min-height: 48px; font-size: 1rem"
+              onclick="openBNPLFromCart()"
+            >
+              Buy Now, Pay Later (Prototype)
+            </button>
+
+            <button
+              type="button"
+              class="btn btn-outline-secondary w-100"
+              style="min-height: 44px"
+              data-bs-dismiss="modal"
+            >
+              Continue Shopping
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="product-detail" style="display: none" class="container my-4">
+      <button class="btn btn-secondary mb-3" onclick="closeProductDetail()">
+        ← Back
+      </button>
+
+      <div class="card p-3">
+        <img
+          id="detail-image"
+          loading="lazy"
+          alt="Selected product image"
+          style="width: 100%; max-height: 300px; object-fit: cover"
+        />
+        <h3 id="detail-name"></h3>
+        <p id="detail-price"></p>
+        <p id="detail-owner" class="text-muted"></p>
+        <p id="detail-description"></p>
+
+        <div class="mt-4 border-top pt-3">
+          <h5>Customer comments</h5>
+          <p class="text-muted small mb-3">
+            Leave a review comment here. It will be visible to anyone who opens
+            this item details.
+          </p>
+          <div id="detail-comments" class="mb-3"></div>
+          <textarea
+            id="detail-comment-input"
+            class="form-control"
+            rows="3"
+            placeholder="Write a comment about this product or service..."
+          ></textarea>
+          <button
+            id="detail-comment-btn"
+            class="btn btn-dark mt-2"
+            onclick="submitDetailComment()"
+          >
+            Post Comment
+          </button>
+        </div>
+
+        <button
+          id="detail-cart-btn"
+          class="btn btn-success w-100 mt-3"
+          onclick="addDetailToCart()"
+        >
+          Add to Cart
+        </button>
+
+        <button
+          id="bnpl-btn"
+          class="btn btn-outline-warning w-100 mt-2"
+          onclick="openBNPL()"
+        >
+          Buy Now, Pay Later
+        </button>
+      </div>
+    </div>
+
+    <div id="cart-view" style="display: none" class="container my-4">
+      <h3>Your Cart</h3>
+
+      <div id="cart-items"></div>
+
+      <button class="btn btn-primary w-100 mt-3" onclick="checkout()">
+        Checkout
+      </button>
+    </div>
+
+    <div id="account-view" style="display: none" class="container my-4">
+      <div class="card shadow-sm p-3 p-md-4">
+        <div class="row g-4 align-items-center">
+          <div class="col-12 col-md-3 text-center">
+            <img
+              id="account-photo"
+              loading="lazy"
+              src="https://via.placeholder.com/150?text=Profile"
+              alt="Profile photo"
+              class="rounded-circle border"
+              style="
+                width: 150px;
+                height: 150px;
+                object-fit: cover;
+                border-width: 3px !important;
+              "
+            />
+          </div>
+          <div class="col-12 col-md-9">
+            <h3>My Account</h3>
+            <p class="mb-2">
+              <strong>Name:</strong> <span id="account-name"></span>
+            </p>
+            <p class="mb-2">
+              <strong>Email:</strong> <span id="account-email"></span>
+            </p>
+            <p class="mb-2">
+              <strong>Role:</strong> <span id="account-role"></span>
+            </p>
+            <p class="mb-2">
+              <strong>Phone:</strong> <span id="account-phone"></span>
+            </p>
+            <p class="mb-2">
+              <strong>Birth Date:</strong> <span id="account-birth"></span>
+            </p>
+            <p class="mb-2">
+              <strong>About:</strong> <span id="account-bio"></span>
+            </p>
+
+            <button
+              class="btn btn-outline-danger mt-3"
+              style="min-height: 44px"
+              onclick="logoutUser()"
+            >
+              Log Out
+            </button>
+          </div>
+        </div>
+
+        <div
+          id="provider-section"
+          class="card mt-4 p-4 border-0 shadow-sm"
+          style="display: none"
+        >
+          <h4 class="mb-3">Post Product or Service</h4>
+          <p class="text-muted mb-3">
+            Only Seller and Technician accounts can use this provider posting
+            form.
+          </p>
+
+          <div class="row g-3">
+            <div class="col-12 col-md-6">
+              <label for="provider-name" class="form-label"
+                >Provider Name</label
+              >
+              <input
+                id="provider-name"
+                class="form-control"
+                placeholder="Your business or service name"
+                style="min-height: 44px"
+              />
+            </div>
+
+            <div class="col-12 col-md-6">
+              <label for="provider-role" class="form-label">Posting Type</label>
+              <select
+                id="provider-role"
+                class="form-select"
+                style="min-height: 44px"
+              >
+                <option value="">Choose type</option>
+                <option value="Seller">Seller</option>
+                <option value="Technician">Technician</option>
+              </select>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <label
+                id="specialty-label"
+                for="provider-specialty"
+                class="form-label"
+                >Specialty</label
+              >
+              <input
+                id="provider-specialty"
+                class="form-control"
+                placeholder="Enter your specialty"
+                style="min-height: 44px"
+              />
+            </div>
+
+            <div class="col-12 col-md-6">
+              <label for="provider-location" class="form-label">Location</label>
+              <input
+                id="provider-location"
+                class="form-control"
+                placeholder="Where you operate"
+                style="min-height: 44px"
+              />
+            </div>
+
+            <div
+              class="col-12 col-md-6"
+              id="price-container"
+              style="display: none"
+            >
+              <label for="provider-price" class="form-label">Price</label>
+              <input
+                id="provider-price"
+                type="number"
+                min="0"
+                class="form-control"
+                placeholder="Set product price"
+                style="min-height: 44px"
+              />
+            </div>
+
+            <div class="col-12">
+              <label for="provider-description" class="form-label"
+                >Description</label
+              >
+              <textarea
+                id="provider-description"
+                class="form-control"
+                rows="3"
+                placeholder="Describe your product or service"
+                style="min-height: 90px; padding: 14px"
+              ></textarea>
+            </div>
+
+            <div class="col-12">
+              <label id="file-label" for="provider-image" class="form-label"
+                >Upload Profile Picture</label
+              >
+              <div class="row g-2">
+                <div class="col-6">
+                  <input
+                    id="provider-image"
+                    type="file"
+                    class="form-control"
+                    accept="image/*"
+                    style="min-height: 44px; padding: 12px 8px"
+                  />
+                </div>
+                <div class="col-6">
+                  <input
+                    id="provider-camera"
+                    type="file"
+                    class="form-control"
+                    accept="image/*"
+                    capture="environment"
+                    style="min-height: 44px; padding: 12px 8px"
+                  />
+                  <small class="text-muted d-block mt-1"
+                    >📷 Camera (Mobile)</small
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button
+            class="btn btn-dark mt-3 w-100"
+            type="button"
+            style="min-height: 48px; font-size: 1rem"
+            onclick="registerProvider()"
+          >
+            Post Now
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- ORDER CONFIRMATION -->
+    <div
+      id="order-confirmation"
+      style="display: none"
+      class="container my-4 text-center"
+    >
+      <h2>🎉 Order Successful</h2>
+      <p>Your order has been placed successfully.</p>
+    </div>
+    <div id="order-confirmation" style="display: none" class="text-center p-5">
+      <h1>🎉 Payment Successful!</h1>
+      <p>Your order has been placed successfully.</p>
+
+      <button class="btn btn-dark mt-3" onclick="goHome()">Go Back Home</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <div class="modal fade" id="editProductModal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5>Edit Product</h5>
+            <button class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+
+          <div class="modal-body">
+            <input
+              type="text"
+              id="edit-name"
+              class="form-control mb-2"
+              placeholder="Product name"
+            />
+
+            <input
+              type="number"
+              id="edit-price"
+              class="form-control mb-2"
+              placeholder="Price"
+            />
+
+            <textarea
+              id="edit-details"
+              class="form-control mb-2"
+              placeholder="Product detail"
+            ></textarea>
+
+            <button class="btn btn-success w-100" onclick="saveProductEdit()">
+              Save Changes
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="editProviderModal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5>Edit Technician Service</h5>
+            <button class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+
+          <div class="modal-body">
+            <input
+              type="text"
+              id="edit-provider-name"
+              class="form-control mb-2"
+              placeholder="Service name"
+            />
+
+            <input
+              type="text"
+              id="edit-provider-specialty"
+              class="form-control mb-2"
+              placeholder="Specialty"
+            />
+
+            <input
+              type="text"
+              id="edit-provider-location"
+              class="form-control mb-2"
+              placeholder="Location"
+            />
+
+            <input
+              type="number"
+              id="edit-provider-price"
+              class="form-control mb-2"
+              placeholder="Price"
+            />
+
+            <textarea
+              id="edit-provider-description"
+              class="form-control mb-2"
+              placeholder="Description"
+            ></textarea>
+
+            <button class="btn btn-success w-100" onclick="saveProviderEdit()">
+              Save Changes
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="notifModal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Notifications</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+
+          <div class="modal-body">
+            <!-- THIS MUST EXIST -->
+            <div id="notif-list"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="bnplModal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">
+              Buy Now, Pay Later — Prototype (Coming Soon)
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body" id="bnpl-modal-body">
+            <p class="small text-muted">
+              Prototype Feature · Future Financial Services · Under Development
+            </p>
+
+            <div class="mb-3">
+              <label class="form-label">Select financing provider</label>
+              <select id="bnpl-provider" class="form-select">
+                <option value="telebirr">telebirr</option>
+                <option value="cbe">Commercial Bank of Ethiopia (CBE)</option>
+                <option value="dashen">Dashen Bank</option>
+                <option value="awash">Awash Bank</option>
+                <option value="cooperative">Cooperative Bank of Oromia</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Select installment period</label>
+              <select id="bnpl-period" class="form-select">
+                <option value="3">3 Months</option>
+                <option value="6">6 Months</option>
+                <option value="12">12 Months</option>
+              </select>
+            </div>
+
+            <div class="alert alert-warning">
+              <strong>Coming Soon:</strong> This is a prototype only. No real
+              loans or requests are created.
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              onclick="submitBNPLSelection()"
+            >
+              Continue
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        const token = localStorage.getItem("token");
+        const currentUser = JSON.parse(
+          localStorage.getItem("currentUser") || "null",
+        );
+
+        if (!token || !currentUser?.email) {
+          window.location.replace("guest.html");
+        }
+      })();
+    </script>
+  </body>
+</html>

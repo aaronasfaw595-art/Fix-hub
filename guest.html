@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>FixHub Guest Browse</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">FixHub</a>
+        <div class="ms-auto d-flex gap-2 align-items-center">
+          <a class="nav-link text-white" href="index.html">Home</a>
+          <a class="nav-link text-white" href="#" onclick="openAbout(event)"
+            >About</a
+          >
+          <span id="user-info" class="text-white"></span>
+          <a class="btn btn-outline-light btn-sm auth-action" href="login.html"
+            >Login</a
+          >
+          <a class="btn btn-warning btn-sm auth-action" href="register.html"
+            >Sign Up</a
+          >
+          <button
+            id="logout-button"
+            class="btn btn-outline-light btn-sm"
+            onclick="handleLogout()"
+            style="display: none"
+          >
+            Logout
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <main id="main-content">
+      <section class="hero text-center py-5 bg-light">
+        <div class="container">
+          <h1>Browse as a Guest</h1>
+          <p class="lead">
+            See registered products and services, then sign in to interact.
+          </p>
+          <a class="btn btn-dark auth-action" href="login.html"
+            >Log in or Sign up</a
+          >
+        </div>
+      </section>
+
+      <section class="container my-5">
+        <h2>Registered Products</h2>
+        <div class="row" id="products-container"></div>
+      </section>
+
+      <section class="container my-5">
+        <h2>Registered Services</h2>
+        <div class="row" id="services-container"></div>
+      </section>
+    </main>
+
+    <div id="toast" class="toast-message" aria-live="polite"></div>
+
+    <script src="script.js?v=fixhub-20260620c"></script>
+  </body>
+</html>

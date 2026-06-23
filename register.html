@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+
+    <title>FixHub Register</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body style="background: #f5f5f5">
+    <div class="container">
+      <div
+        class="row justify-content-center align-items-center"
+        style="min-height: 100vh; padding: 20px"
+      >
+        <div class="col-12 col-sm-10 col-md-5">
+          <div class="card shadow-lg border-0 p-4 p-sm-5 rounded-4">
+            <h2 class="text-center mb-4" style="font-size: 1.8rem">
+              Create Account
+            </h2>
+
+            <label for="register-first-name" class="form-label"
+              >First Name</label
+            >
+            <input
+              type="text"
+              id="register-first-name"
+              class="form-control mb-3"
+              placeholder="First Name"
+              autocomplete="given-name"
+              style="min-height: 44px; padding: 12px 14px; font-size: 1rem"
+            />
+
+            <label for="register-last-name" class="form-label">Last Name</label>
+            <input
+              type="text"
+              id="register-last-name"
+              class="form-control mb-3"
+              placeholder="Last Name"
+              autocomplete="family-name"
+              style="min-height: 44px; padding: 12px 14px; font-size: 1rem"
+            />
+
+            <label for="register-phone" class="form-label">Phone Number</label>
+            <input
+              type="tel"
+              id="register-phone"
+              class="form-control mb-3"
+              placeholder="Phone Number"
+              autocomplete="tel"
+              style="min-height: 44px; padding: 12px 14px; font-size: 1rem"
+            />
+
+            <label for="register-birth-date" class="form-label"
+              >Birth Date</label
+            >
+            <input
+              type="date"
+              id="register-birth-date"
+              class="form-control mb-3"
+              placeholder="Birth Date"
+              style="min-height: 44px; padding: 12px 14px; font-size: 1rem"
+            />
+
+            <label for="register-bio" class="form-label">Bio</label>
+            <textarea
+              id="register-bio"
+              class="form-control mb-3"
+              placeholder="Tell us about yourself"
+              style="min-height: 80px; padding: 12px 14px; font-size: 1rem"
+            ></textarea>
+
+            <label for="register-profile-image" class="form-label"
+              >Profile Picture</label
+            >
+            <input
+              type="file"
+              id="register-profile-image"
+              class="form-control mb-3"
+              accept="image/*"
+              style="min-height: 44px; padding: 12px 8px"
+            />
+
+            <label for="register-name" class="form-label">Full Name</label>
+            <input
+              type="text"
+              id="register-name"
+              class="form-control mb-3"
+              placeholder="Full Name"
+              autocomplete="name"
+              style="min-height: 44px; padding: 12px 14px; font-size: 1rem"
+              required
+            />
+
+            <label for="register-email" class="form-label">Email</label>
+            <input
+              type="email"
+              id="register-email"
+              class="form-control mb-3"
+              placeholder="Email"
+              autocomplete="email"
+              style="min-height: 44px; padding: 12px 14px; font-size: 1rem"
+              required
+            />
+
+            <label for="register-password" class="form-label">Password</label>
+            <input
+              type="password"
+              id="register-password"
+              class="form-control mb-3"
+              placeholder="Password"
+              autocomplete="new-password"
+              style="min-height: 44px; padding: 12px 14px; font-size: 1rem"
+              required
+            />
+
+            <label for="register-role" class="form-label">Select Role</label>
+            <select
+              id="register-role"
+              class="form-select mb-4"
+              style="min-height: 44px; padding: 12px 14px; font-size: 1rem"
+              required
+            >
+              <option value="">Choose a role</option>
+              <option value="Customer">Customer</option>
+              <option value="Seller">Seller</option>
+              <option value="Technician">Technician</option>
+            </select>
+
+            <button
+              class="btn btn-dark w-100"
+              style="
+                min-height: 48px;
+                padding: 14px 16px;
+                font-size: 1rem;
+                font-weight: 600;
+              "
+              onclick="registerUser()"
+            >
+              Register
+            </button>
+
+            <p class="text-center mt-3">
+              Already have an account?
+
+              <a href="login.html"> Login </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function fetchWithTimeout(url, options = {}, timeoutMs = 5000) {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
+
+        return fetch(url, {
+          ...options,
+          signal: controller.signal,
+        }).finally(() => clearTimeout(timeoutId));
+      }
+
+      async function registerUser() {
+        const name = document.getElementById("register-name").value.trim();
+        const firstName = document
+          .getElementById("register-first-name")
+          .value.trim();
+        const lastName = document
+          .getElementById("register-last-name")
+          .value.trim();
+        const phone = document.getElementById("register-phone").value.trim();
+        const birthDate = document.getElementById("register-birth-date").value;
+        const bio = document.getElementById("register-bio").value.trim();
+        const email = document.getElementById("register-email").value.trim();
+        const password = document.getElementById("register-password").value;
+        const role = document.getElementById("register-role").value;
+        const profileImage = document.getElementById("register-profile-image")
+          .files[0];
+
+        if (!name || !email || !password || !role) {
+          alert("Please fill name, email, password, and role");
+          return;
+        }
+
+        const formData = new FormData();
+        formData.append("name", name);
+        formData.append("firstName", firstName);
+        formData.append("lastName", lastName);
+        formData.append("phone", phone);
+        formData.append("birthDate", birthDate);
+        formData.append("bio", bio);
+        formData.append("email", email);
+        formData.append("password", password);
+        formData.append("role", role);
+        if (profileImage) {
+          formData.append("profileImage", profileImage);
+        }
+
+        const apiBaseCandidates = [
+          `${window.location.protocol}//${window.location.hostname}:3000`,
+          "http://192.168.18.116:3000",
+          "http://localhost:3000",
+          "http://127.0.0.1:3000",
+        ];
+
+        let response;
+        let lastError;
+
+        for (const base of apiBaseCandidates) {
+          try {
+            response = await fetchWithTimeout(
+              `${base}/api/auth/register`,
+              {
+                method: "POST",
+                mode: "cors",
+                body: formData,
+              },
+              6000,
+            );
+
+            if (response.ok) {
+              break;
+            }
+          } catch (err) {
+            lastError = err;
+          }
+        }
+
+        if (!response) {
+          const message =
+            lastError?.message ||
+            "Failed to connect to the server. Make sure the backend is running and your phone is on the same Wi‑Fi.";
+          alert(message);
+          return;
+        }
+
+        const text = await response.text();
+        let data = {};
+
+        try {
+          data = text ? JSON.parse(text) : {};
+        } catch (e) {
+          data = { message: text || "Registration failed" };
+        }
+
+        if (!response.ok) {
+          alert(data.message || "Registration failed");
+          return;
+        }
+
+        if (!data.success) {
+          alert(data.message || "Registration failed");
+          return;
+        }
+
+        alert(data.message || "Registration complete");
+        window.location.href = "./login.html";
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>About FixHub</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">FixHub</a>
+        <div class="ms-auto d-flex gap-2 align-items-center">
+          <a class="nav-link text-white" href="index.html">Home</a>
+          <a class="nav-link text-white" href="guest.html">Catalog</a>
+          <a class="nav-link text-white" href="about.html">About</a>
+          <span id="user-info" class="text-white"></span>
+          <a class="btn btn-outline-light btn-sm auth-action" href="login.html"
+            >Login</a
+          >
+          <a class="btn btn-warning btn-sm auth-action" href="register.html"
+            >Sign Up</a
+          >
+          <button
+            id="logout-button"
+            class="btn btn-outline-light btn-sm"
+            onclick="handleLogout()"
+            style="display: none"
+          >
+            Logout
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <main id="main-content">
+      <section class="hero text-center py-5 bg-light">
+        <div class="container">
+          <span class="hero-badge"
+            >🧩 Built By students • 🛍️ Marketplace • 🔧 Services</span
+          >
+          <h1>About FixHub</h1>
+          <p class="lead mx-auto" style="max-width: 780px">
+            FixHub is a student-built Ethiopian marketplace that connects
+            customers with trusted sellers and technicians. It makes shopping,
+            booking, and local service discovery simple, secure, and
+            professional, with delivery support built into the experience.
+          </p>
+        </div>
+      </section>
+
+      <section class="container my-5">
+        <div class="row g-4">
+          <div class="col-md-4">
+            <article class="card h-100 shadow-sm p-4">
+              <h2 class="h4 mb-2">What FixHub does</h2>
+              <p class="mb-0 text-muted">
+                FixHub helps people browse products, find technicians, book
+                services, and manage secure purchases in one place. It was
+                created as a practical student project to combine ecommerce and
+                repair/service support.
+              </p>
+            </article>
+          </div>
+          <div class="col-md-4">
+            <article class="card h-100 shadow-sm p-4">
+              <h2 class="h4 mb-2">Why it matters</h2>
+              <p class="mb-0 text-muted">
+                The platform focuses on trust, convenience, and easy
+                communication between customers, sellers, and service providers.
+                It is designed to support local business visibility and smooth
+                online interactions.
+              </p>
+            </article>
+          </div>
+          <div class="col-md-4">
+            <article class="card h-100 shadow-sm p-4">
+              <h2 class="h4 mb-2">Our goal</h2>
+              <p class="mb-0 text-muted">
+                We aim to build a clean, modern marketplace that feels
+                professional, friendly, and useful for everyday users in
+                Ethiopia.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="container my-5">
+        <div class="d-flex justify-content-between align-items-end mb-3">
+          <div>
+            <h2 class="mb-1">Student Profiles</h2>
+            <p class="text-muted mb-0">The team behind FixHub</p>
+          </div>
+        </div>
+
+        <div class="row g-4">
+          <article class="col-md-4">
+            <div class="card h-100 shadow-sm p-4 text-center">
+              <img
+                loading="lazy"
+                src="https://ui-avatars.com/api/?name=Aron+Asfaw&background=0ea5e9&color=fff&size=180"
+                class="rounded-circle mx-auto mb-3"
+                alt="Aron Asfaw"
+                style="width: 120px; height: 120px; object-fit: cover"
+              />
+              <h3 class="h5 mb-1">Aron Asfaw</h3>
+              <p class="text-muted mb-2">ID: UGR/5502/16</p>
+              <p class="mb-0 text-muted">
+                Creative and detail-focused student who helped improve the
+                design and user experience of the website.
+              </p>
+            </div>
+          </article>
+
+          <article class="col-md-4">
+            <div class="card h-100 shadow-sm p-4 text-center">
+              <img
+                loading="lazy"
+                src="https://ui-avatars.com/api/?name=Bisrat+Belete&background=22c55e&color=fff&size=180"
+                class="rounded-circle mx-auto mb-3"
+                alt="Bisrat Belete"
+                style="width: 120px; height: 120px; object-fit: cover"
+              />
+              <h3 class="h5 mb-1">Bisrat Belete</h3>
+              <p class="text-muted mb-2">ID: UGR/3434/16</p>
+              <p class="mb-0 text-muted">
+                Focused on platform structure and smooth navigation, helping the
+                marketplace flow feel easier to use.
+              </p>
+            </div>
+          </article>
+
+          <article class="col-md-4">
+            <div class="card h-100 shadow-sm p-4 text-center">
+              <img
+                loading="lazy"
+                src="https://ui-avatars.com/api/?name=Almaw+Taddele&background=f59e0b&color=fff&size=180"
+                class="rounded-circle mx-auto mb-3"
+                alt="Almaw Taddele"
+                style="width: 120px; height: 120px; object-fit: cover"
+              />
+              <h3 class="h5 mb-1">Almaw Taddele</h3>
+              <p class="text-muted mb-2">ID: UGR/9219/16</p>
+              <p class="mb-0 text-muted">
+                Contributed to the service-side features and helped make the
+                seller and technician sections more practical.
+              </p>
+            </div>
+          </article>
+
+          <article class="col-md-4">
+            <div class="card h-100 shadow-sm p-4 text-center">
+              <img
+                loading="lazy"
+                src="https://ui-avatars.com/api/?name=Omega+Melese&background=8b5cf6&color=fff&size=180"
+                class="rounded-circle mx-auto mb-3"
+                alt="Omega Melese"
+                style="width: 120px; height: 120px; object-fit: cover"
+              />
+              <h3 class="h5 mb-1">Omega Melese</h3>
+              <p class="text-muted mb-2">ID: UGR/7814/16</p>
+              <p class="mb-0 text-muted">
+                Played a key role in presenting the project clearly and
+                supporting the overall customer-facing experience.
+              </p>
+            </div>
+          </article>
+
+          <article class="col-md-4">
+            <div class="card h-100 shadow-sm p-4 text-center">
+              <img
+                loading="lazy"
+                src="https://ui-avatars.com/api/?name=Michael+Alula&background=ef4444&color=fff&size=180"
+                class="rounded-circle mx-auto mb-3"
+                alt="Michael Alula"
+                style="width: 120px; height: 120px; object-fit: cover"
+              />
+              <h3 class="h5 mb-1">Michael Alula</h3>
+              <p class="text-muted mb-2">ID: UGR/0429/16</p>
+              <p class="mb-0 text-muted">
+                Helped shape the platform flow and ensured the project stays
+                aligned with real user needs and functionality.
+              </p>
+            </div>
+          </article>
+
+          <article class="col-md-4">
+            <div class="card h-100 shadow-sm p-4 text-center">
+              <img
+                loading="lazy"
+                src="https://ui-avatars.com/api/?name=Yosef+Mulalem&background=111827&color=fff&size=180"
+                class="rounded-circle mx-auto mb-3"
+                alt="Yosef Mulalem"
+                style="width: 120px; height: 120px; object-fit: cover"
+              />
+              <h3 class="h5 mb-1">Yosef Mulalem</h3>
+              <p class="text-muted mb-2">ID: UGR/3429/16</p>
+              <p class="mb-0 text-muted">
+                Contributed to the project’s quality and balance between
+                practical features and clean presentation.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="text-center py-4 mt-5">
+      <div class="container">
+        <p class="mb-0">© 2026 FixHub - Built for Ethiopia</p>
+      </div>
+    </footer>
+
+    <script src="script.js?v=fixhub-20260620c"></script>
+  </body>
+</html>
