@@ -17,7 +17,7 @@ const API_BASE_CANDIDATES = (() => {
   return [
     dynamicBase,
     "http://192.168.18.116:3000",
-    "http://localhost:3000",
+    "https://fix-hub-backend.onrender.com",
     "http://127.0.0.1:3000",
   ].filter(Boolean);
 })();
