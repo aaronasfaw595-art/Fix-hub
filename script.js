@@ -1336,8 +1336,9 @@ window.registerProvider = function () {
       document.getElementById("provider-price").value = "";
       document.getElementById("provider-description").value = "";
       document.getElementById("provider-image").value = "";
-    })
-    .catch(() => {
+   })
+    .catch((err) => {
+      console.error("🔥 CRITICAL POST ERROR DETAILS:", err); // <-- Add this line
       showToast("Server error ❌");
     });
 };
