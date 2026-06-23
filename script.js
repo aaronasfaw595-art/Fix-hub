@@ -165,9 +165,14 @@ window.fetch = async function (input, init) {
         : String(input || "");
 
   if (typeof requestUrl === "string") {
+    // Catch every possible local variation along with old Render URLs
+    const liveBase = await getApiBase();
     const rewrittenUrl = requestUrl
-      .replace("http://127.0.0.1:3000", await getApiBase())
-      .replace("http://localhost:3000", await getApiBase());
+      .replace("http://localhost:3000", liveBase)
+      .replace("http://127.0.0.1:3000", liveBase)
+      .replace("localhost:3000", liveBase)
+      .replace("127.0.0.1:3000", liveBase)
+      .replace("https://fix-hub-esw3.onrender.com", liveBase);
 
     const rewrittenInput =
       typeof input === "string"
@@ -179,7 +184,6 @@ window.fetch = async function (input, init) {
 
   return originalFetch(input, init);
 };
-
 window.loadCart = function () {
   const user = getCurrentUserState();
 
