@@ -69,7 +69,7 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-app.options("*", cors(corsOptions));
+app.options(/(.*)/, cors(corsOptions));
 
 // Updated security headers to permit your live deployment URL
 app.use((req, res, next) => {
