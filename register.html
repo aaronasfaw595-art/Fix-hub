@@ -207,12 +207,11 @@
           formData.append("profileImage", profileImage);
         }
 
-        const apiBaseCandidates = [
-          `${window.location.protocol}//${window.location.hostname}:3000`,
-          "http://192.168.18.116:3000",
-          "http://localhost:3000",
-          "http://127.0.0.1:3000",
-        ];
+       const apiBaseCandidates = (() => {
+  return [
+    "https://fix-hub-backend.onrender.com"
+  ];
+})();
 
         let response;
         let lastError;
