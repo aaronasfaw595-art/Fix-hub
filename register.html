@@ -188,8 +188,34 @@
         const profileImage = document.getElementById("register-profile-image")
           .files[0];
 
+      // 1. Check for basic required fields
         if (!name || !email || !password || !role) {
-          alert("Please fill name, email, password, and role");
+          alert("❌ Registration failed: Full Name, Email, Password, and Role are strictly required.");
+          return;
+        }
+
+        // 2. Explicit password length verification
+        if (password.length < 8) {
+          alert("⚠️ Password insecure: Your password must be at least 8 characters long.");
+          return;
+        }
+
+        // 3. Optional: Validate Ethiopian Phone formatting if provided
+        if (phone) {
+          // Removes spaces or dashes if the user typed them
+          const cleanPhone = phone.replace(/[\s-]/g, ""); 
+          // Checks if it's a standard 10-digit local number starting with 09 or 07
+          const phoneRegex = /^(09|07)\d{8}$/;
+          
+          if (!phoneRegex.test(cleanPhone)) {
+            alert("⚠️ Invalid Phone Number: Please enter a valid 10-digit phone number starting with 09 or 07 (e.g., 0911223344).");
+            return;
+          }
+        }
+
+        // 4. Verify email includes an @ symbol
+        if (!email.includes("@")) {
+          alert("⚠️ Invalid Email: Please enter a valid email address containing an '@' symbol.");
           return;
         }
 
