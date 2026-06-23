@@ -9,17 +9,9 @@ let editingProductId = null;
 let editingProviderId = null;
 
 const API_BASE_CANDIDATES = (() => {
-  const currentHost =
-    typeof window !== "undefined" && window.location?.hostname
-      ? `${window.location.protocol}//${window.location.hostname}`
-      : "";
-  const dynamicBase = currentHost ? `${currentHost}:3000` : "";
   return [
-    dynamicBase,
-    "http://192.168.18.116:3000",
-    "https://fix-hub-backend.onrender.com",
-    "http://127.0.0.1:3000",
-  ].filter(Boolean);
+    "https://fix-hub-backend.onrender.com"
+  ];
 })();
 let resolvedApiBase = null;
 const API_RESPONSE_CACHE = new Map();
