@@ -5,6 +5,7 @@ const rateLimit = require("express-rate-limit");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const path = require("path");
+const fs = require("fs");
 dotenv.config();
 
 const app = express();
@@ -74,7 +75,12 @@ app.use((req, res, next) => {
   );
   next();
 });
-
+// Ensure uploads directory exists
+const uploadsDir = path.join(__dirname, "uploads");
+if (!fs.existsSync(uploadsDir)) {
+  fs.mkdirSync(uploadsDir, { recursive: true });
+  console.log("Created uploads directory 📁");
+}
 // Routes
 const authRoutes = require("./routes/authRoutes");
 const productRoutes = require("./routes/productRoutes");
