@@ -75,18 +75,24 @@ function fetchWithTimeout(url, options = {}, timeoutMs = 5000) {
 async function getApiBase() {
   if (resolvedApiBase) return resolvedApiBase;
 
+  // Prioritize your live deployment link explicitly over local fallbacks
+  const productionBase = "https://fix-hub-backend.onrender.com";
   const runtimeBase = getRuntimeApiBase();
+  
   const candidateBases = Array.from(
-    new Set([runtimeBase, ...API_BASE_CANDIDATES]),
+    new Set([productionBase, runtimeBase, ...API_BASE_CANDIDATES])
   );
 
   const probeBase = async (base) => {
+    // Increase probe limit to 2500ms to allow your cloud server to shake off latency
+    const timeoutLimit = base.includes("onrender.com") ? 4000 : 1500;
+    
     const response = await fetchWithTimeout(
       `${base}/`,
       {
         method: "GET",
       },
-      350,
+      timeoutLimit
     );
 
     if (response.ok || response.status === 404 || response.status < 500) {
@@ -104,12 +110,14 @@ async function getApiBase() {
         } catch (err) {
           throw err;
         }
-      }),
+      })
     );
+    console.log("🎯 CONNECTED TO API BASE:", resolvedApiBase);
     return resolvedApiBase;
   } catch (err) {
-    console.warn("API base probe failed for all candidates", err);
-    resolvedApiBase = runtimeBase;
+    console.warn("API base probe failed for all candidates, hard-falling back to production", err);
+    // If everything fails, hard-default to your live internet server, not localhost!
+    resolvedApiBase = productionBase;
     return resolvedApiBase;
   }
 }
